@@ -1,6 +1,6 @@
 FROM node:14-alpine
 
-RUN apk update && apk add --no-cache --virtual build-dependenciess build-base gcc make git nano python wget ca-certificates bash libstdc++
+RUN apk update && apk add --no-cache --virtual build-dependenciess build-base gcc make git nano python wget ca-certificates bash libstdc++ yarn
 
 # Get and install glibc for alpine
 ARG APK_GLIBC_VERSION=2.29-r0
@@ -21,7 +21,7 @@ RUN python -m ensurepip && \
 
 USER node
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-RUN npm i -g typescript gulp polymer-cli
+RUN npm i -g typescript gulp polymer-cli sass polyserve readline
 
 ENV PATH="/home/node/.npm-global/bin:${PATH}"
 WORKDIR /usr/src/app
